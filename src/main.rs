@@ -2,6 +2,7 @@ use ahash::RandomState as ARandomState;
 use anyhow::{anyhow, Result};
 use bstr::{io::BufReadExt, ByteSlice};
 use clap::{Arg, Command};
+use mimalloc::MiMalloc;
 use std::cmp::Ordering;
 use std::collections::{hash_map, HashMap, HashSet};
 use std::hash::BuildHasherDefault;
@@ -9,6 +10,9 @@ use std::hash::{BuildHasher, Hasher};
 use std::io::{stdin, stdout, BufRead, Write};
 use std::mem;
 use std::{default::Default, slice};
+
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
 
 /// A no-operation hasher. Used as part of the uniq implementation,
 /// because in there we manually hash the data and just store the

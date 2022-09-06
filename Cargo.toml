@@ -15,6 +15,7 @@ clap = "3.1.9"
 anyhow = "1.0.56"
 ahash = "0.7.6"
 bstr = "0.2.17"
+mimalloc = { version = "0.1", default-features = false } # Turn off the default secure mode
 
 [dev-dependencies]
 assert_cmd = "2.0.4"
